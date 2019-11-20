@@ -15,11 +15,11 @@ logger = logging.getLogger('bot_logger')
 class BotHandler(logging.Handler):
     def __init__(self, bot):
         logging.Handler.__init__(self)
-        self.bot = bot
+        self._bot = bot
 
     def emit(self, record):
         msg = self.format(record)
-        self.bot.send_message(chat_id=CHAT_ID.get(), text=msg)
+        self._bot.send_message(chat_id=CHAT_ID.get(), text=msg)
 
 
 def start(update, context):
