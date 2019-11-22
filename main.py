@@ -46,7 +46,7 @@ class DialogflowHelper:
             response = client.detect_intent(session=session, query_input=query_input)
         except:
             logger.debug(f'Something goes wrong:\n', exc_info=True)
-            response = None
+            response = {}
 
         return response
 
@@ -73,6 +73,7 @@ class DialogflowHelper:
         except:
             logger.debug('Cannot get the value of fulfillment_text:\n', exc_info=True)
             result = None
+
         return result
 
 
