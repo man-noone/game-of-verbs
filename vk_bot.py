@@ -16,9 +16,12 @@ longpoll = VkLongPoll(vk_session)
 
 def df_answer(event):
     df = DialogflowHelper(event.user_id, event.text)
-    vk_api.messages.send(user_id=event.user_id,
-                         message=df.fulfillment_text,
-                         random_id=time_ns())
+    if df.fulfillment_text == 'Даже не знаю, что на это сказать':
+        pass
+    else:
+        vk_api.messages.send(user_id=event.user_id,
+                             message=df.fulfillment_text,
+                             random_id=time_ns())
 
 
 def main():
