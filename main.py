@@ -97,7 +97,6 @@ def greet(update, context):
 
 
 def error(update, context):
-    CHAT_ID.set(update.effective_chat.id)
     tg_logger.debug('Error occured')
 
 
