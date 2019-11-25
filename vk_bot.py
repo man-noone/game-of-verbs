@@ -11,7 +11,7 @@ from main import DialogflowHelper
 # from main import tg_logger as vk_logger
 
 # vk_logger = logging.getLogger('tg_logger')
-vk_logger = logging.getLogger('tg_bot')
+vk_logger = logging.getLogger('vk_bot')
 # bot_handler.setLevel(logging.DEBUG)
 # vk_logger.addHandler(bot_handler)
 
