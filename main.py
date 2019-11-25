@@ -105,7 +105,7 @@ if __name__ == '__main__':
     bot_handler = BotHandler(bot)
     bot_handler.setLevel(logging.DEBUG)
     tg_logger.addHandler(bot_handler)
-    console_logger = logging.StreamHandler(sys.stdout
+    console_logger = logging.StreamHandler(sys.stdout)
     tg_logger.addHandler(console_logger)
 
     start_handler = CommandHandler('start', start)
