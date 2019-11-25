@@ -1,4 +1,5 @@
 import os
+import sys
 import logging
 from contextvars import ContextVar
 
@@ -10,8 +11,6 @@ import dialogflow_v2
 
 
 tg_logger = logging.getLogger('bot_logger')
-console_logger = logging.StreamHandler()
-tg_logger.addHandler(console_logger)
 
 TELEGRAM_TOKEN = os.environ['TELEGRAM_VERBS_TOKEN']
 CHAT_ID = ContextVar('chat_id')
@@ -48,7 +47,6 @@ class DialogflowHelper:
             response = client.detect_intent(session=session, query_input=query_input)
         except:
             tg_logger.debug(f'Something goes wrong:\n', exc_info=True)
-            console_handler.debug('Something goes wrong', exc_info=True)
             response = {}
 
         return response
@@ -62,7 +60,6 @@ class DialogflowHelper:
             result = response.query_result.query_text
         except:
             tg_logger.debug('Cannot get the value of the query_text:\n', exc_info=True)
-            console_logger.debug('Cannot get the value of the query_text', exc_info=True)
             result = None
 
         return result
@@ -76,7 +73,6 @@ class DialogflowHelper:
             result = response.query_result.fulfillment_text
         except:
             tg_logger.debug('Cannot get the value of fulfillment_text:\n', exc_info=True)
-            console_logger.debug('Fullfilment_text', exc_info=True)
             result = None
 
         return result
@@ -109,6 +105,8 @@ if __name__ == '__main__':
     bot_handler = BotHandler(bot)
     bot_handler.setLevel(logging.DEBUG)
     tg_logger.addHandler(bot_handler)
+    console_logger = logging.StreamHandler(sys.stdout
+    tg_logger.addHandler(console_logger)
 
     start_handler = CommandHandler('start', start)
     dispatcher.add_handler(start_handler)
