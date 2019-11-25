@@ -106,14 +106,16 @@ if __name__ == '__main__':
     dispatcher = updater.dispatcher
     bot = updater.bot
 
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    datefmt='%d.%b.%Y %H:%M:%S')
+
     bot_handler = BotHandler(bot)
     bot_handler.setLevel(logging.DEBUG)
+    bot_handler.setFormatter(formatter)
     tg_logger.addHandler(bot_handler)
 
     console_logger = logging.StreamHandler(sys.stdout)
     console_logger.setLevel(logging.DEBUG)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%d.%b.%Y %H:%M:%S')
     console_logger.setFormatter(formatter)
     tg_logger.addHandler(console_logger)
 
