@@ -6,10 +6,14 @@ import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 from main import DialogflowHelper
+from main import bot_handler
+
 # from main import tg_logger as vk_logger
 
 # vk_logger = logging.getLogger('tg_logger')
 vk_logger = logging.getLogger(__name__ + 'vk_bot')
+bot_handler.setLevel(logging.DEBUG)
+vk_logger.addHandler(bot_handler)
 
 VK_TOKEN = os.environ['VK_VERBS_TOKEN']
 
