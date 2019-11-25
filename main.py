@@ -11,7 +11,7 @@ import dialogflow_v2
 
 tg_logger = logging.getLogger('bot_logger')
 console_logger = logging.StreamHandler()
-tg_logger.addHandler(console_handler)
+tg_logger.addHandler(console_logger)
 
 TELEGRAM_TOKEN = os.environ['TELEGRAM_VERBS_TOKEN']
 CHAT_ID = ContextVar('chat_id')
