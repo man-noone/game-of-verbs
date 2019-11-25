@@ -9,7 +9,9 @@ from telegram.ext import MessageHandler, Filters
 
 import dialogflow_v2
 
-
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    datefmt='%d.%b.%Y %H:%M:%S')
 tg_logger = logging.getLogger(__name__ + ' tg_bot')
 
 TELEGRAM_TOKEN = os.environ['TELEGRAM_VERBS_TOKEN']
@@ -95,10 +97,6 @@ def greet(update, context):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG,
-                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                        datefmt='%d.%b.%Y %H:%M:%S')
-
     updater = Updater(token=TELEGRAM_TOKEN, use_context=True)
     dispatcher = updater.dispatcher
     bot = updater.bot
