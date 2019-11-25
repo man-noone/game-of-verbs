@@ -96,6 +96,11 @@ def greet(update, context):
     context.bot.send_message(chat_id=chat_id, text=df.fulfillment_text)
 
 
+def error(update, context):
+    CHAT_ID.set(update.effective_chat.id)
+    tg_logger.debug('Error occured')
+
+
 if __name__ == '__main__':
     updater = Updater(token=TELEGRAM_TOKEN, use_context=True)
     dispatcher = updater.dispatcher
@@ -107,6 +112,8 @@ if __name__ == '__main__':
 
     console_logger = logging.StreamHandler(sys.stdout)
     tg_logger.addHandler(console_logger)
+
+    dispatcher.add_error_handler(error)
 
     start_handler = CommandHandler('start', start)
     dispatcher.add_handler(start_handler)
