@@ -10,7 +10,7 @@ from telegram.ext import MessageHandler, Filters
 import dialogflow_v2
 
 
-tg_logger = logging.getLogger('bot_logger')
+tg_logger = logging.getLogger(__name__ + ' tg_bot')
 
 TELEGRAM_TOKEN = os.environ['TELEGRAM_VERBS_TOKEN']
 CHAT_ID = ContextVar('chat_id')
@@ -106,6 +106,7 @@ if __name__ == '__main__':
     bot_handler = BotHandler(bot)
     bot_handler.setLevel(logging.DEBUG)
     tg_logger.addHandler(bot_handler)
+
     console_logger = logging.StreamHandler(sys.stdout)
     tg_logger.addHandler(console_logger)
 
