@@ -1,4 +1,5 @@
 import os
+import logging
 from time import time_ns
 
 import vk_api
@@ -6,6 +7,8 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 
 from main import DialogflowHelper
 
+
+vk_logger = logging.getLoggert('vk_logger')
 
 VK_TOKEN = os.environ['VK_VERBS_TOKEN']
 
@@ -24,16 +27,12 @@ def df_answer(event):
                              random_id=time_ns())
 
 
-def main():
+
+if __name__ == '__main__':
     while True:
         try:
             for event in longpoll.listen():
                 if event.type == VkEventType.MESSAGE_NEW and event.to_me:
                     df_answer(event)
         except Exception as e:
-            print(e)
-
-
-
-if __name__ == '__main__':
-    main()
+            vk_logger.debug('Exception:\n', exc_info=True)

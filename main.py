@@ -9,7 +9,7 @@ from telegram.ext import MessageHandler, Filters
 import dialogflow_v2
 
 
-logger = logging.getLogger('bot_logger')
+tg_logger = logging.getLogger('bot_logger')
 
 TELEGRAM_TOKEN = os.environ['TELEGRAM_VERBS_TOKEN']
 CHAT_ID = ContextVar('chat_id')
@@ -45,7 +45,7 @@ class DialogflowHelper:
         try:
             response = client.detect_intent(session=session, query_input=query_input)
         except:
-            logger.debug(f'Something goes wrong:\n', exc_info=True)
+            tg_logger.debug(f'Something goes wrong:\n', exc_info=True)
             response = {}
 
         return response
@@ -58,7 +58,7 @@ class DialogflowHelper:
         try:
             result = response.query_result.query_text
         except:
-            logger.debug('Cannot get the value of query_text:\n', exc_info=True)
+            tg_logger.debug('Cannot get the value of the query_text:\n', exc_info=True)
             result = None
 
         return result
@@ -71,7 +71,7 @@ class DialogflowHelper:
         try:
             result = response.query_result.fulfillment_text
         except:
-            logger.debug('Cannot get the value of fulfillment_text:\n', exc_info=True)
+            tg_logger.debug('Cannot get the value of fulfillment_text:\n', exc_info=True)
             result = None
 
         return result
@@ -103,7 +103,7 @@ if __name__ == '__main__':
 
     bot_handler = BotHandler(bot)
     bot_handler.setLevel(logging.DEBUG)
-    logger.addHandler(bot_handler)
+    tg_logger.addHandler(bot_handler)
 
     start_handler = CommandHandler('start', start)
     dispatcher.add_handler(start_handler)
