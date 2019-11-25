@@ -71,6 +71,7 @@ class DialogflowHelper:
 
         try:
             result = response.query_result.fulfillment_text
+            tg_logger.info('Fullfillment_text get successfully')
         except:
             tg_logger.debug('Cannot get the value of fulfillment_text:\n', exc_info=True)
             result = None
