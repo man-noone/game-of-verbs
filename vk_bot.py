@@ -8,7 +8,7 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from main import DialogflowHelper
 
 
-vk_logger = logging.getLoggert('vk_logger')
+vk_logger = logging.getLogger('vk_logger')
 
 VK_TOKEN = os.environ['VK_VERBS_TOKEN']
 
