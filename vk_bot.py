@@ -9,6 +9,7 @@ from main import DialogflowHelper
 # from main import tg_logger as vk_logger
 
 # vk_logger = logging.getLogger('tg_logger')
+vk_logger = logging.getLogger(__name__ + 'vk_bot')
 
 VK_TOKEN = os.environ['VK_VERBS_TOKEN']
 
@@ -35,7 +36,6 @@ def df_answer(event):
 
 
 if __name__ == '__main__':
-    vk_logger = logging.getLogger(__name__ + 'vk_bot')
     while True:
         try:
             for event in longpoll.listen():
