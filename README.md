@@ -22,6 +22,6 @@ Heroku оба процесса запускает и они работают, к
 
 Выглядит вот так (лог из Heroku CLI):
 
-[Log](./images/heroku_cli_logging.png)
+![Log](./images/heroku_cli_logging.png)
 
 Буду признателен за подсказку.
