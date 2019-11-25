@@ -12,7 +12,7 @@ import dialogflow_v2
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     datefmt='%d.%b.%Y %H:%M:%S')
-tg_logger = logging.getLogger(__name__ + ' tg_bot')
+tg_logger = logging.getLogger('tg_bot')
 
 TELEGRAM_TOKEN = os.environ['TELEGRAM_VERBS_TOKEN']
 CHAT_ID = ContextVar('chat_id')
