@@ -36,3 +36,6 @@ if __name__ == '__main__':
                     df_answer(event)
         except Exception as e:
             vk_logger.debug('Exception:\n', exc_info=True)
+
+            from main import console_logger
+            console_logger.debug('Smth goes wrong', exc_info=True)
