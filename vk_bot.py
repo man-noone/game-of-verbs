@@ -6,9 +6,9 @@ import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 from main import DialogflowHelper
+# from main import tg_logger
 
-
-vk_logger = logging.getLogger('vk_logger')
+vk_logger = logging.getLogger('tg_logger')
 
 VK_TOKEN = os.environ['VK_VERBS_TOKEN']
 
@@ -18,10 +18,15 @@ longpoll = VkLongPoll(vk_session)
 
 
 def df_answer(event):
-    df = DialogflowHelper(event.user_id, event.text)
+    try:
+        df = DialogflowHelper(event.user_id, event.text)
+    except:
+        tg_logger.debug('Exception occur:', exc_info=True)
+
     if df.fulfillment_text == 'Даже не знаю, что на это сказать':
         pass
     else:
+        tg_logger.debug('Message successfully sent')
         vk_api.messages.send(user_id=event.user_id,
                              message=df.fulfillment_text,
                              random_id=time_ns())
